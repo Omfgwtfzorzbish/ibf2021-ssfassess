@@ -44,7 +44,7 @@ public class BookService {
             throw new IllegalArgumentException("Error: %s".formatted(resp.getStatusCode().toString()));
             final String body = resp.getBody();
 
-            logger.info("payload:%s".formatted(body));
+            //logger.info("payload:%s".formatted(body));
 
             try{ InputStream is = new ByteArrayInputStream(body.getBytes());
                 final JsonReader reader = Json.createReader(is);
@@ -66,7 +66,9 @@ public class BookService {
        
         final String url = UriComponentsBuilder
             .fromUriString("https://openlibrary.org/"+ id)  //id is /works/{id}
-            .toUriString(); logger.info(url);
+            .toUriString(); 
+            
+            logger.info(id); System.out.println(id);
 
             final RequestEntity<Void> req = RequestEntity.get(url).build();
             final RestTemplate template = new RestTemplate();

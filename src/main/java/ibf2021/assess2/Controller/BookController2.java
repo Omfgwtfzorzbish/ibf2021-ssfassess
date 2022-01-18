@@ -16,7 +16,9 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@Controller
+
+public class BookController2 {
+    @Controller
 public class BookController {
     private static final Logger logger = LoggerFactory.getLogger(BookController.class);
 
@@ -44,4 +46,6 @@ public class BookController {
     }
 
    
+}
+
 }
