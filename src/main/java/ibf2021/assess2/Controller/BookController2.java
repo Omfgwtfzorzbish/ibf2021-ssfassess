@@ -1,6 +1,7 @@
 package ibf2021.assess2.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,27 +17,26 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
-
 @Controller
+@Qualifier("bookcontrol")
 public class BookController2 {
-    private static final Logger logger = LoggerFactory.getLogger(BookController.class);
+    private static final Logger logger = LoggerFactory.getLogger(BookController2.class);
 
     @Autowired BookService bookService;
 
 
-    @GetMapping("/book/{id}/")
+    @GetMapping("/book/{id}")
     public String showBook(Model model, @PathVariable(value="id") String bookId){
-        bookId =bookId.replace("book","works");
+       
         List<BookDetails> bookdlist = Collections.EMPTY_LIST;
 
-        // bookdlist =bookService.getBookDetails(bookId);
+        bookdlist =bookService.getBookDetails(bookId);
 
         List<String> excerptlist = new ArrayList<String>();
         List<String> descriptionlist = new ArrayList<String>();
-        // for(BookDetails b:bookdlist){
-            // excerptlist.add(b.getExcerpt());
-            // descriptionlist.add(b.getDescription());}
+        for(BookDetails b:bookdlist){
+            excerptlist.add(b.getExcerpt());
+            descriptionlist.add(b.getDescription());}
 
         model.addAttribute("excerptlist", excerptlist);
         model.addAttribute("descriptionlist", descriptionlist);
@@ -46,6 +46,4 @@ public class BookController2 {
     }
 
    
-}
-
 }
