@@ -33,7 +33,7 @@ public class BookController2 {
     @GetMapping("/book/{id}")
     public String showBook(Model model, @PathVariable(value="id") String bookId){
     BookDetails onebook = new BookDetails();
-    Optional<String> opt = repoService.getCache(bookId);
+    Optional<String> opt = repoService.getCache(bookId.trim().toLowerCase());
     
     if(opt.isPresent()){
         onebook.setIscached("is cached");
@@ -43,7 +43,8 @@ public class BookController2 {
         }else{
             try {
                 onebook = bookService.getBookDetails(bookId);
-
+                repoService.saveToRedis(bookId, onebook.getTitle(), onebook.getExcerpt(), onebook.getDescription(), onebook.getCover());
+            
           
             } catch (Exception e) {
                 //TODO: handle exception
