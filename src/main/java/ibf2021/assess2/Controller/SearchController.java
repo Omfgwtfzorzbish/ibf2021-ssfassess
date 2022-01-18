@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import ibf2021.assess2.Model.Book;
 import ibf2021.assess2.Service.BookService;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -34,9 +35,12 @@ public class SearchController {
     @PostMapping("/booksearch")
     public String search(@ModelAttribute Book book, Model model){
         List<Book> booklist = Collections.EMPTY_LIST;
+        
+        booklist = bookService.getBookTittleId(book.getSearchname());
+        List<String> titlelist = new ArrayList<String>();
+        for(Book b : booklist){titlelist.add(b.getTitle());}
 
-        booklist = bookService.getWeather(book.getBookname());
-
+        model.addAttribute("titlelist", titlelist);
         model.addAttribute("book", book);
         return "booksearch";
     }

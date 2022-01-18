@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+  <head>
+    <title>Contact Form</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  </head>
+  <body th:object="${Book}">
+    <h1>Search Results</h1>
+      <table>
+        <tr th:each="title : ${titlelist}">
+          <th th:text="${'Title: '+ title}"></th>
+        </tr>
+      </table>
+  </body>
+</html>

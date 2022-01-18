@@ -16,7 +16,7 @@
         <h1>Book Search</h1>
         <form action = "#" th:action = "@{/booksearch}"  th:object="${book}" method = "post" class="d-flex justify-content-center">     
             <!-- <label>Search</label> -->
-                <input type="text" placeholder="Search by title" th:field ="*{bookname}" class="form-control"/> </br> 
+                <input type="text" placeholder="Search by title" th:field ="*{searchname}" class="form-control"/> </br> 
             <button type= "submit" class="btn btn-primary">  Submit </button>
         </form>
     </div>
