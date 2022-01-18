@@ -63,9 +63,9 @@ public class BookService {
     }
 
     public List<BookDetails> getBookDetails(String id){
-       
+        String s ="https://openlibrary.org/works/" + id +".json"; logger.info(s);
         final String url = UriComponentsBuilder
-            .fromUriString("https://openlibrary.org/"+ id)  //id is /works/{id}
+            .fromUriString(s)  //id is /works/{id}
             .toUriString(); 
             
             logger.info(id); System.out.println(id);
