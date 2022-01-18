@@ -7,6 +7,15 @@ public class BookDetails {
     private String description;
     private String excerpt;
     private String cover;
+    private String iscached = "not cached";
+
+    public String getIscached() {
+        return this.iscached;
+    }
+
+    public void setIscached(String iscached) {
+        this.iscached = iscached;
+    }
 
     public String getCover() {
         return this.cover;

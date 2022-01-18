@@ -8,6 +8,8 @@
     <h1>Search Results</h1>
       <div th:each = "book:${booklist}">
           <p><a th:href="@{/book/{id}(id=${book.id})}" data-th-text="${book.title}"></a></p>
+      </div>
+      <a href="/">Back</a>
   </body>
 </html>
 

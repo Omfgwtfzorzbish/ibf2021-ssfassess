@@ -8,9 +8,14 @@
     <div align = "center">
       <h1> Your Book</h1>
       <span>Title: </span> <span th:text = "${onebook.title}"></span></br>
+    </br>
       <span>Description:  </span> <span th:text = "${onebook.description}"></span></br>
+    </br>
       <span>Excerpt: </span> <span th:text = "${onebook.excerpt}"></span></br>
-  
+    </br>
+      <span>isCached: </span> <span th:text = "${onebook.iscached}"></span></br>
+    </br>
+      <a href="/">Back</a>
   </div>
   </body>
 </html>
