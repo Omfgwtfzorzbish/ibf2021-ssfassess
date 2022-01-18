@@ -17,9 +17,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
+
+@Controller
 public class BookController2 {
-    @Controller
-public class BookController {
     private static final Logger logger = LoggerFactory.getLogger(BookController.class);
 
     @Autowired BookService bookService;
