@@ -1,5 +1,6 @@
 package ibf2021.assess2.Model;
 
+import java.util.Arrays;
 import java.util.List;
 
 import jakarta.json.JsonObject;
@@ -9,6 +10,15 @@ public class Book {
     private String title;
     private String key;
     private String covers;
+    private String id;
+
+    public String getId() {
+        return this.id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getCovers() {
         return this.covers;
@@ -50,7 +60,8 @@ public class Book {
         Book w = new Book();
         w.setTitle(o.getString("title"));
         w.setKey(o.getString("key").replace("works", "book"));   //format "key": "/works/OL14926019W" to /books/
-        
+        List<String>temp = Arrays.asList(o.getString("key").split("/"));
+        w.setId(temp.get(temp.size()-1));
         return w;
     }
 

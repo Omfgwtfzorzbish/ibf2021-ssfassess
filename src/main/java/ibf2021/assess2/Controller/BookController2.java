@@ -25,7 +25,7 @@ public class BookController {
     @Autowired BookService bookService;
 
 
-    @GetMapping("/{id}")
+    @GetMapping("/book/{id}/")
     public String showBook(Model model, @PathVariable(value="id") String bookId){
         bookId =bookId.replace("book","works");
         List<BookDetails> bookdlist = Collections.EMPTY_LIST;
