@@ -55,7 +55,7 @@ public class BookController2 {
         String description = onebook.getDescription();
         String title = onebook.getTitle();
         String iscached = onebook.getIscached();
-        String cover = onebook.getCover();
+        String cover = onebook.getCover(); System.out.println(cover);
       
 
         model.addAttribute("excerpt", excerpt);

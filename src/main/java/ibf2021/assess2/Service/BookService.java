@@ -107,14 +107,16 @@ public class BookService {
                     onebook.setExcerpt(excerptlist.get(0).getString("excerpt"));
                 }
                 if(result.containsKey("cover")){
-                   onebook.setCover("cover");
+                    try {onebook.setCover(result.getString("cover"));}
+                    catch (Exception e) {
+                    }
                 }
                 if(result.containsKey("covers")){
                     JsonArray covers = result.getJsonArray("covers");
                     List<JsonObject> coverlist = 
                     covers.stream().map(v ->(JsonObject)v).collect(Collectors.toList());
                     coverlist.get(0).getString("covers");
-                    String coverurl = "https://covers.openlibrary.org/b/olid/b/olid/" + id +"-" +"M.jpg";
+                    String coverurl = "https://covers.openlibrary.org/b/olid/" + id +"-" +"M.jpg";
                     onebook.setCover(coverurl);
                                                     //https://covers.openlibrary.org/b/olid/OL7440033M-S.jpg
                 }
