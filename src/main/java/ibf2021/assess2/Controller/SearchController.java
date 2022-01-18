@@ -37,10 +37,9 @@ public class SearchController {
         List<Book> booklist = Collections.EMPTY_LIST;
         
         booklist = bookService.getBookTittleId(book.getSearchname());
-        List<String> titlelist = new ArrayList<String>();
-        for(Book b : booklist){titlelist.add(b.getTitle());}
+       
 
-        model.addAttribute("titlelist", titlelist);
+        model.addAttribute("booklist", booklist);
         model.addAttribute("book", book);
         return "booksearch";
     }

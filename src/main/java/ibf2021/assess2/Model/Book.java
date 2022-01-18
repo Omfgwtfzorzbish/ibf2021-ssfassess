@@ -44,7 +44,7 @@ public class Book {
     public static Book createTitleList(JsonObject o){
         Book w = new Book();
         w.setTitle(o.getString("title"));
-        w.setKey(o.getString("key"));   //format "key": "/works/OL14926019W"
+        w.setKey(o.getString("key").replace("works", "book"));   //format "key": "/works/OL14926019W" to /books/
         return w;
     }
 }
