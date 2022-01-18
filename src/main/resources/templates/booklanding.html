@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+    <title>TODO Landing</title>
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container mt-3">
+    <div class="row mt-5 full-size">
+    <div class="col">
+        <h1>Book Search</h1>
+        <form action = "#" th:action = "@{/booksearch}"  th:object="${book}" method = "post" class="d-flex justify-content-center">     
+            <!-- <label>Search</label> -->
+                <input type="text" placeholder="Search by title" th:field ="*{bookname}" class="form-control"/> </br> 
+            <button type= "submit" class="btn btn-primary">  Submit </button>
+        </form>
+    </div>
+    </div>
+    </div>
+</body>
+</html>
