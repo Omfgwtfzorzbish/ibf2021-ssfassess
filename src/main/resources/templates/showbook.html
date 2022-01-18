@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+  <head>
+    <title>Contact Form</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  </head>
+  <body>
+    <h1>Your Book</h1>
+    <div>
+    <table>
+        <tr th:each="excerpt : ${excerptlist}">
+          <th th:text="${'Excerpt: '+ excerpt}"></th>
+        </tr>
+        <tr th:each="description : ${descriptionlist}">
+          <td th:text="${'Description: ' + description}"></td>
+        </tr>
+      </table>
+    </div> 
+  </body>
+</html>

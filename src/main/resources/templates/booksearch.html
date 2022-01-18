@@ -7,7 +7,7 @@
   <body>
     <h1>Search Results</h1>
       <div th:each = "book:${booklist}">
-          <p><a th:href="@{/{id}(id=${book.key})}" data-th-text="${book.title}"></a></p>
+          <p><a th:href="@{{id}(id=${book.key})}" data-th-text="${book.title}"></a></p>
   </body>
 </html>
 

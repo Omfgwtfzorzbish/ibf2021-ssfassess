@@ -8,6 +8,17 @@ public class Book {
     private String searchname;
     private String title;
     private String key;
+    private String covers;
+
+    public String getCovers() {
+        return this.covers;
+    }
+
+    public void setCovers(String covers) {
+    String cover = "https://covers.openlibrary.org/b/olid/" + covers  +"-" + "S.jpg";                              // https://covers.openlibrary.org/b/olid/OL7440033M-S.jpg
+        this.covers = cover;
+    }
+
  
 
     public String getTitle() {
@@ -35,16 +46,13 @@ public class Book {
     public void setSearchname(String searchname) {
         this.searchname = searchname;
     }
-
-    
-
-
- 
-
     public static Book createTitleList(JsonObject o){
         Book w = new Book();
         w.setTitle(o.getString("title"));
         w.setKey(o.getString("key").replace("works", "book"));   //format "key": "/works/OL14926019W" to /books/
+      
         return w;
     }
+
+
 }
