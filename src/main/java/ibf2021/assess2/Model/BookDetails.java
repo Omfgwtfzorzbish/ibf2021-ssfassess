@@ -45,6 +45,7 @@ public class BookDetails {
         w.setExcerpt(o.getString("excerpt"));
           //format "key": "/works/OL14926019W" to /books/
         return w;
+        
     }
 
 }
