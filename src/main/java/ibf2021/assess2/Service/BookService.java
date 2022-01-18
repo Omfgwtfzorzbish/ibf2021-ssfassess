@@ -44,7 +44,7 @@ public class BookService {
             throw new IllegalArgumentException("Error: %s".formatted(resp.getStatusCode().toString()));
             final String body = resp.getBody();
 
-            //logger.info("payload:%s".formatted(body));
+            logger.info("payload:%s".formatted(body));
 
             try{ InputStream is = new ByteArrayInputStream(body.getBytes());
                 final JsonReader reader = Json.createReader(is);
@@ -62,7 +62,8 @@ public class BookService {
             return Collections.EMPTY_LIST;
     }
 
-    public List<BookDetails> getBookDetails(String id){
+    public BookDetails getBookDetails(String id){
+        BookDetails onebook = new BookDetails();
         String s ="https://openlibrary.org/works/" + id +".json"; logger.info(s);
         final String url = UriComponentsBuilder
             .fromUriString(s)  //id is /works/{id}
@@ -83,20 +84,39 @@ public class BookService {
             try{ InputStream is = new ByteArrayInputStream(body.getBytes());
                 final JsonReader reader = Json.createReader(is);
                 final JsonObject result = reader.readObject();
-                final JsonArray readings = result.getJsonArray("excerpts"); //contains main, description and icon
+                onebook.setTitle(result.getString("title"));
+                if (result.containsKey("description"))
+                    {try {onebook.setDescription(result.getString("description"));}
+                     catch (Exception e) {
+                    }
+                    try {onebook.setDescription(result.getJsonObject("description").getString("value"));}
+                     catch (Exception e) {
+                    }
+                }
+
+                if (result.containsKey("excerpt"))
+                    {try {onebook.setExcerpt(result.getString("excerpt"));}
+                    catch (Exception e) {
+                    }
+                }
+
+                if(result.containsKey("excerpts")){
+                    JsonArray excerpts = result.getJsonArray("excerpts");
+                    List<JsonObject> excerptlist = 
+                    excerpts.stream().map(v ->(JsonObject)v).collect(Collectors.toList());
+                    onebook.setExcerpt(excerptlist.get(0).getString("excerpt"));
+                }
+                // if(result.containsKey("cover")){
+                //    onebook.setCover("cover");
+                // }
+                // if(result.containsKey("covers")){
+                //                                     //https://covers.openlibrary.org/b/olid/OL7440033M-S.jpg
+                // }
                 
-                return readings.stream()
-                    .map(v -> (JsonObject)v)
-                    .map(BookDetails::createExcerptList)//creates bookdetails objects with excerpts for each excerpt
-                    .map(w -> {         //for each excerpt add the description
-                        w.setDescription("description");       
-                        return w;               //RETURNS A bookdetails bject WITH multiple excerpts with description
-                    })
-                    .collect(Collectors.toList()); 
 
             }catch (Exception e) {
-                logger.error("error in json bookservice");
+                logger.error("error in json bookservice"); e.printStackTrace();
             }
-            return Collections.EMPTY_LIST;
+            return onebook;
     }
 }

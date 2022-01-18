@@ -6,6 +6,15 @@ public class BookDetails {
     private String title;
     private String description;
     private String excerpt;
+    private String cover;
+
+    public String getCover() {
+        return this.cover;
+    }
+
+    public void setCover(String cover) {
+        this.cover = cover;
+    }
 
     public String getTitle() {
         return this.title;

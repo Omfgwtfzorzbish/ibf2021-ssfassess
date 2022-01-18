@@ -5,16 +5,12 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   </head>
   <body>
-    <h1>Your Book</h1>
-    <div>
-    <table>
-        <tr th:each="excerpt : ${excerptlist}">
-          <th th:text="${'Excerpt: '+ excerpt}"></th>
-        </tr>
-        <tr th:each="description : ${descriptionlist}">
-          <td th:text="${'Description: ' + description}"></td>
-        </tr>
-      </table>
-    </div> 
+    <div align = "center">
+      <h1> Your Book</h1>
+      <span>Title: </span> <span th:text = "${onebook.title}"></span></br>
+      <span>Description:  </span> <span th:text = "${onebook.description}"></span></br>
+      <span>Excerpt: </span> <span th:text = "${onebook.excerpt}"></span></br>
+  
+  </div>
   </body>
 </html>

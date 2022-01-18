@@ -18,7 +18,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Controller
-@Qualifier("bookcontrol")
+
 public class BookController2 {
     private static final Logger logger = LoggerFactory.getLogger(BookController2.class);
 
@@ -28,19 +28,16 @@ public class BookController2 {
     @GetMapping("/book/{id}")
     public String showBook(Model model, @PathVariable(value="id") String bookId){
        
-        List<BookDetails> bookdlist = Collections.EMPTY_LIST;
+        BookDetails onebook = bookService.getBookDetails(bookId);
 
-        bookdlist =bookService.getBookDetails(bookId);
+        String excerpt = onebook.getExcerpt();
+        String description = onebook.getDescription();
+        String title = onebook.getTitle();
 
-        List<String> excerptlist = new ArrayList<String>();
-        List<String> descriptionlist = new ArrayList<String>();
-        for(BookDetails b:bookdlist){
-            excerptlist.add(b.getExcerpt());
-            descriptionlist.add(b.getDescription());}
-
-        model.addAttribute("excerptlist", excerptlist);
-        model.addAttribute("descriptionlist", descriptionlist);
-
+        model.addAttribute("excerpt", excerpt);
+        model.addAttribute("description", description);
+        model.addAttribute("title", title);
+        model.addAttribute("onebook", onebook);
         
         return "showbook";
     }
